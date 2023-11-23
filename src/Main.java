@@ -1,13 +1,18 @@
 import java.util.Random;
+import java.util.Scanner;
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        String[] strings = { "Рядок 1", "Рядок 2", "Рядок 3", "Рядок 4", "Рядок 5" };
+        // String[] strings = { "Рядок 1", "Рядок 2", "Рядок 3", "Рядок 4", "Рядок 5" };
 
-        moveStrings(strings);
+        // moveStrings(strings);
+        JFrameOne frame = new JFrameOne();
     }
-
     public static void moveStrings(String[] strings) {
         Random random = new Random();
         int frameWidth = 100;
