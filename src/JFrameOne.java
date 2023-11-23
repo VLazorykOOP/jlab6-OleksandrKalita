@@ -9,6 +9,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+class EmptyFileException extends ArithmeticException {
+    public EmptyFileException(String message) {
+        super(message);
+    }
+}
 
 public class JFrameOne extends JFrame {
     private JFrame frame;
@@ -80,12 +85,16 @@ public class JFrameOne extends JFrame {
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader("text.txt"));
                     String line = reader.readLine();
+                    if (line == null) {
+                        throw new EmptyFileException("The file is empty.");
+                    }
                     MatrixSizeField.setText(line);
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(frame, "File not found!");
-                } catch (ArithmeticException ex) {
-                    JOptionPane.showMessageDialog(frame, "Custom arithmetic exception occurred: " + ex.getMessage());
-                } catch (Exception ex) {
+                } catch (EmptyFileException ex) {
+                    JOptionPane.showMessageDialog(frame, "File is empty!");
+                    System.out.println("Custom empty file exception: " + ex.getMessage());
+                } catch (IOExeption ex) {
                     JOptionPane.showMessageDialog(frame, "An error occurred: " + ex.getMessage());
                 }
             }
